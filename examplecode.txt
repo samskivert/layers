@@ -1,0 +1,93 @@
+-- FONTS --
+
+//                     System.out.println("click " + guiLayer.getLayer().getName());
+//                     Font f = label.getFont();
+//                     Font f1 = f.deriveFont(Font.BOLD);
+//                     label.setFont(f);
+//                     label.setText("hello");
+//                     label.invalidate();
+//                     label.repaint();
+//                     label.validate();
+
+-- BORDERS --
+
+//                     Border border = BorderFactory.createLineBorder(Color.RED, 2);
+//                     label.setBorder(border);
+
+
+    /*
+    public void actionPerformed(ActionEvent evt) {
+        Object src = evt.getSource();
+
+        if (src == yes) 
+            listener.yes();
+        else if (src == no)
+            listener.no();
+    }
+    */
+
+---
+
+//     public void addSuggestion(LayersSideEntry sp) {
+//         // XXX figure out how to use a grid bag to stack things vertically
+//         //System.out.println("adding suggestion");
+//         suggestionLog.add(sp);
+//         suggestionLog.invalidate();
+//         suggestionLog.repaint();
+//         suggestionLog.validate();
+//     }
+
+//     public void removeSuggestion(LayersSideEntry sp) {
+//         suggestionLog.remove(sp);
+//         suggestionLog.invalidate();
+//         suggestionLog.repaint();
+//         suggestionLog.validate();
+//     }
+
+---
+
+        //controlPanel = new ControlPanel();
+        //getContentPane().add(controlPanel, BorderLayout.PAGE_START);
+
+---
+
+//     public void bumpAfter(Edit edit, int bump) {
+//         for (Object o : edits) {
+//             Edit e = (Edit)o;
+//             if (edit.getPos().get() <= e.getPos().get() && edit != e) {
+//                 System.out.println("bumping edit " + e + " in layer " + name + " by " + bump);
+//                 e.bumpPos(bump);
+//             }
+//         }
+//     }
+
+---
+
+    /*
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
+
+        if (o instanceof Layer) {
+            Layer l = (Layer)o;
+            return l.name.equals(this.name)
+                && l.pos == this.pos
+                && l.on == this.on
+                && l.text.equals(this.text);
+        }
+
+        return false;
+    }
+    */
+
+---
+
+//     public static void bumpAfter(Edit edit, int bump) {
+//         LayerDB db = LayerDB.getInstance();
+//         Set layers = db.getLayers();
+
+//         for (Object o : layers) {
+//             Layer layer = (Layer)o;
+//             layer.bumpAfter(edit, bump);
+//         }
+//     }
