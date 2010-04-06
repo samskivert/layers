@@ -1,0 +1,4 @@
+foo
+lolz view
+baz
+lol view.*;
