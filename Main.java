@@ -33,8 +33,8 @@ class Main {
                         System.out.println("L&F failed");
                     }
 
-                    VibeEditor.bootEditor();
-                    VibeEditor.getInstance().addVibeListener(new EditorListener());
+                    LayerEditor.bootEditor();
+                    LayerEditor.getInstance().addLayerListener(new EditorListener());
                     Control.addBaseLayer();
                 }
             });
