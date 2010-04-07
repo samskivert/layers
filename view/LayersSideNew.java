@@ -25,7 +25,7 @@ public class LayersSideNew extends JPanel
     {
         super();
 
-        final VibeEditor editor = VibeEditor.getInstance();
+        final LayerEditor editor = LayerEditor.getInstance();
 
         checkbox = new JCheckBox();
         checkbox.setSelected(false);

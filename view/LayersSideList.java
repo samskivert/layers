@@ -83,7 +83,7 @@ public class LayersSideList extends JPanel
     // XXX not sure this is the right place for this
     public AttributeSet getAttr(Layer l) {
         if (l == null)
-            return VibeEditor.getInstance().defaultAttr();
+            return LayerEditor.getInstance().defaultAttr();
         for (GUILayer gl : layers) {
             if (gl.getLayer().equals(l)) {
                 System.out.println("returning attr for " + gl.getLayer().getName());
@@ -91,7 +91,7 @@ public class LayersSideList extends JPanel
             }
         }
         System.out.println("falling out");
-        return VibeEditor.getInstance().defaultAttr();
+        return LayerEditor.getInstance().defaultAttr();
     }
 
     public void setCheckbox(GUILayer layer, boolean flag) {

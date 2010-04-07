@@ -10,7 +10,7 @@ import javax.swing.event.*;
 import javax.swing.undo.*;
 
 
-public class EditorListener implements IVibeListener
+public class EditorListener implements ILayerListener
 {
     Document doc;
 

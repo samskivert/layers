@@ -18,21 +18,21 @@ public class MiniEditor {
     private JTextPane textPane;
     private AbstractDocument doc;
     private Selection selection;
-    private ArrayList<IVibeListener> listeners;
-    private VibeUndo undo;
+    private ArrayList<ILayerListener> listeners;
+    private LayerUndo undo;
     private static final int MAX_CHARACTERS = 100000;
     private boolean inSelectionClear;
     private AttributeSet currentAttr;
     private File file;
 
-    private class VibeStyledDocument extends DefaultStyledDocument
+    private class LayerStyledDocument extends DefaultStyledDocument
     {
         public void remove(int off, int len)
             throws BadLocationException
         {
             String str = getText(off, len);
 
-            for (IVibeListener lst : listeners) {
+            for (ILayerListener lst : listeners) {
                 lst.textRemoved(str, off);
             }
 
@@ -45,14 +45,14 @@ public class MiniEditor {
                                     AttributeSet set)
         {
             super.insertUpdate(evt, currentAttr);
-            //super.insertUpdate(evt, VibeEditor.getInstance().nextBgAttr());
+            //super.insertUpdate(evt, LayerEditor.getInstance().nextBgAttr());
         }
     }
 
     /* i'm implementing kind of a wonky way to get selections.
        there's probably an easier way to get them through the Document interface...
     */
-    private class VibeCaretListener implements CaretListener {
+    private class LayerCaretListener implements CaretListener {
         public void caretUpdate(CaretEvent e) {
             // don't process if we're calling setSelectionStart/setSelectionEnd internally
             if (inSelectionClear)
@@ -82,7 +82,7 @@ public class MiniEditor {
         }
     }
 
-    private class VibeUndoableEditListener implements UndoableEditListener
+    private class LayerUndoableEditListener implements UndoableEditListener
     {
         public void undoableEditHappened(UndoableEditEvent e) {
             //Remember the edit and update the menus.
@@ -93,7 +93,7 @@ public class MiniEditor {
     }
 
     //And this one listens for any changes to the document.
-    protected class VibeDocumentListener implements DocumentListener
+    protected class LayerDocumentListener implements DocumentListener
     {
         public void insertUpdate(DocumentEvent e) {
             int off = e.getOffset();
@@ -108,7 +108,7 @@ public class MiniEditor {
                 //System.out.println("Bad location\n");
             }
 
-            for (IVibeListener lst : listeners) {
+            for (ILayerListener lst : listeners) {
                 if (! selection.isEmpty()) {
                     lst.textReplaced(selection.getText(), text, off);
                     selection.empty();
@@ -146,7 +146,7 @@ public class MiniEditor {
         
         tp.setCaretPosition(0);
         tp.setMargin(new Insets(5, 5, 5, 5));
-        tp.addCaretListener(new VibeCaretListener());
+        tp.addCaretListener(new LayerCaretListener());
         tp.setStyledDocument(doc);
 
         return tp;
@@ -163,18 +163,18 @@ public class MiniEditor {
         }
 
         absDoc.setDocumentFilter(new DocumentSizeFilter(MAX_CHARACTERS));
-        absDoc.addUndoableEditListener(new VibeUndoableEditListener());
-        absDoc.addDocumentListener(new VibeDocumentListener());
+        absDoc.addUndoableEditListener(new LayerUndoableEditListener());
+        absDoc.addDocumentListener(new LayerDocumentListener());
 
         return absDoc;
     }
 
     public MiniEditor(AttributeSet attr) {
         selection = new Selection();
-        listeners = new ArrayList<IVibeListener>();
-        undo = new VibeUndo();
+        listeners = new ArrayList<ILayerListener>();
+        undo = new LayerUndo();
 
-        VibeStyledDocument styledDoc = new VibeStyledDocument();
+        LayerStyledDocument styledDoc = new LayerStyledDocument();
         StyleContext stctx = new StyleContext();
         StyleContext.NamedStyle st = stctx.new NamedStyle();
         st.addAttributes(attr);
@@ -221,7 +221,7 @@ public class MiniEditor {
         int buflen = 500;
         char buf[] = new char[buflen];
 
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
 
         SimpleAttributeSet attr = editor.defaultAttr();
         Document doc = getDocument();
@@ -263,9 +263,9 @@ public class MiniEditor {
 //     public void changeStyle() {
 //         StyleContext stctx = new StyleContext();
 //         StyleContext.NamedStyle st = stctx.new NamedStyle();
-//         st.addAttributes(VibeEditor.getInstance().nextBgAttr());
-//         if (doc instanceof VibeStyledDocument) {
-//             VibeStyledDocument styledDoc = (VibeStyledDocument)doc;
+//         st.addAttributes(LayerEditor.getInstance().nextBgAttr());
+//         if (doc instanceof LayerStyledDocument) {
+//             LayerStyledDocument styledDoc = (LayerStyledDocument)doc;
 //             styledDoc.setLogicalStyle(0, st);
 //         }
 //     }
@@ -278,7 +278,7 @@ public class MiniEditor {
         return doc;
     }
 
-    public VibeUndo getUndoManager() {
+    public LayerUndo getUndoManager() {
         return undo;
     }
 
@@ -309,7 +309,7 @@ public class MiniEditor {
         }
     }
 
-    public void addVibeListener(IVibeListener listener)
+    public void addLayerListener(ILayerListener listener)
     {
         listener.setDocument(doc);
         listeners.add(listener);

@@ -24,7 +24,7 @@ public class LayersSideEntry extends JPanel
 
     public LayersSideEntry(GUILayer layer)
     {
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
         //attrSet = editor.nextBgAttr();
 
         this.guiLayer = layer;

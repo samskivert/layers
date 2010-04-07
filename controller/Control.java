@@ -21,7 +21,7 @@ public class Control
         System.out.println("Control.addLayer: " + layerName);
 
         LayerDB db = LayerDB.getInstance();
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
 
         Layer layer = new Layer(layerName);
         layer.turnOn();
@@ -45,7 +45,7 @@ public class Control
 
         PositionManager pm = PositionManager.getInstance();
         LayerDB db = LayerDB.getInstance();
-        final VibeEditor editor = VibeEditor.getInstance();
+        final LayerEditor editor = LayerEditor.getInstance();
         final Document doc = editor.getEditor().getDocument();
 
         final Layer l = db.getCurrentLayer();
@@ -91,7 +91,7 @@ public class Control
 
         PositionManager pm = PositionManager.getInstance();
         LayerDB db = LayerDB.getInstance();
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
         final Document doc = editor.getEditor().getDocument();
 
         Layer l = db.getCurrentLayer();
@@ -126,7 +126,7 @@ public class Control
     public static void addBaseLayer()
     {
         LayerDB db = LayerDB.getInstance();
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
 
         Layer layer = new BaseLayer();
         layer.turnOn();
@@ -142,7 +142,7 @@ public class Control
     }
 
     private static void turnOffChildren(GUILayer layer) {
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
         LayerDB db = LayerDB.getInstance();
 
         if (layer.getLayer() == null) {
@@ -165,7 +165,7 @@ public class Control
     }
 
     private static void turnOnParents(GUILayer layer) {
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
         LayerDB db = LayerDB.getInstance();
 
         List<Layer> parents = db.getParents(layer.getLayer());
@@ -184,7 +184,7 @@ public class Control
     }
 
     public static void turnOnNext(Layer l) {
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
         LayerDB db = LayerDB.getInstance();
 
         Layer next = db.getNextActiveLayer(l);
@@ -198,7 +198,7 @@ public class Control
 
         LayerDB db = LayerDB.getInstance();
         PositionManager pm = PositionManager.getInstance();
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
         Set edits = layer.getLayer().getEdits();
         Document doc = editor.getEditor().getDocument();
 
@@ -294,13 +294,13 @@ public class Control
         if (! layer.getLayer().isOn())
             toggleLayer(layer);
 
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
         editor.getEditor().setAttributes(layer.getAttr());
         editor.getLayersSideList().setCurrentLayer(layer);
     }
 
     public static void changeColor(GUILayer guiLayer, Color c) {
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
 
         SimpleAttributeSet attr = (SimpleAttributeSet)guiLayer.getAttr();
         StyleConstants.setBackground(attr, c);
@@ -337,7 +337,7 @@ public class Control
     private static int exnCount = 0;
 
     public static void failedException(Exception e) {
-        VibeEditor editor = VibeEditor.getInstance();
+        LayerEditor editor = LayerEditor.getInstance();
         exnCount++;
         e.printStackTrace();
         editor.setTitle(exnCount + ": [" + e.getMessage() + "]");

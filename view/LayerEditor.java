@@ -20,7 +20,6 @@ public class LayerEditor extends JFrame
     //MiniEditor edRight;
     JTextArea changeLog;
     LayersSideList layersList;
-    ControlPanel controlPanel;
 
     JTabbedPane tabbedPane;
 
@@ -85,7 +84,8 @@ public class LayerEditor extends JFrame
         JScrollPane scrollPaneForLog = new JScrollPane(changeLog);
         scrollPaneForLog.setPreferredSize(new Dimension(4, 200));
 
-        // XXX dead code for now
+        // XXX dead code for now - if I had layers, I could be keeping this
+        // on a layer. ha.
         tabbedPane = new LayerTabbedPane();
         tabbedPane.addTab(editor.getName(), scrollPaneLeft);
 
@@ -120,10 +120,6 @@ public class LayerEditor extends JFrame
             System.out.println("Shit\n");
             System.exit(0);
         }
-    }
-
-    public void setControlListener(ControlListener cl) {
-        controlPanel.setListener(cl);
     }
 
     private void createMenuBar() {
