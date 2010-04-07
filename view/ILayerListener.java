@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.text.*;
 
-public interface IVibeListener
+public interface ILayerListener
 {
     public void setDocument(Document doc);
     public void textRemoved(String text, int pos);

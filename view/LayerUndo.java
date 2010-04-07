@@ -6,7 +6,7 @@ import javax.swing.undo.*;
 
 import controller.Control;
 
-class VibeUndo {
+class LayerUndo {
     protected UndoAction undoAction;
     protected RedoAction redoAction;
     protected UndoManager undo = new UndoManager();

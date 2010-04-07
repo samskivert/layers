@@ -13,11 +13,11 @@ import java.io.*;
 
 import controller.Control;
 
-class VibeTabbedPane extends JTabbedPane
+class LayerTabbedPane extends JTabbedPane
 {
 
 
-    public VibeTabbedPane() {
+    public LayerTabbedPane() {
         super();
     }
 

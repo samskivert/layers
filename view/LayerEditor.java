@@ -13,7 +13,7 @@ import java.io.*;
 
 import controller.Control;
 
-public class VibeEditor extends JFrame
+public class LayerEditor extends JFrame
 {
     java.util.List editors;
     MiniEditor editor;
@@ -27,29 +27,29 @@ public class VibeEditor extends JFrame
     File currentFile;
     //File currentFileRight;
 
-    private static VibeEditor instance;
+    private static LayerEditor instance;
     static {
         /*
           this is kind of a hack. many actions that happen within
-          the body of the VibeEditor constructor demand an instance
+          the body of the LayerEditor constructor demand an instance
           of the editor. so the constructor initializes "instance" to
           "this" and proceeds. i'm not sure of this, but presumably
           these actions don't depend on stuff that happens later in
           the constructor.
         */
-        new VibeEditor();
+        new LayerEditor();
     }
 
     public MiniEditor getEditor() {
         return editor;
     }   
 
-    public void addVibeListener(IVibeListener listener)
+    public void addLayerListener(ILayerListener listener)
     {
-        editor.addVibeListener(listener);
+        editor.addLayerListener(listener);
     }
 
-    public static VibeEditor getInstance() {
+    public static LayerEditor getInstance() {
         if (instance == null) {
             System.out.println("Editor instance does not yet exist!");
             System.exit(1);
@@ -62,8 +62,8 @@ public class VibeEditor extends JFrame
        bothered to figure out right now how to get windows to resize
        properly, etc.
     */
-    private VibeEditor() { 
-        super("Vibe");
+    private LayerEditor() { 
+        super("Layer");
 
         instance = this;
 
@@ -86,7 +86,7 @@ public class VibeEditor extends JFrame
         scrollPaneForLog.setPreferredSize(new Dimension(4, 200));
 
         // XXX dead code for now
-        tabbedPane = new VibeTabbedPane();
+        tabbedPane = new LayerTabbedPane();
         tabbedPane.addTab(editor.getName(), scrollPaneLeft);
 
         // split pane for the split pane above and the text log
@@ -309,7 +309,7 @@ public class VibeEditor extends JFrame
             if (currentFile == null) {
                 JFileChooser fc = new JFileChooser();
 
-                int ret = fc.showSaveDialog(VibeEditor.getInstance());
+                int ret = fc.showSaveDialog(LayerEditor.getInstance());
 
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     File file = fc.getSelectedFile();
@@ -356,7 +356,7 @@ public class VibeEditor extends JFrame
         public void actionPerformed(ActionEvent e) {
             JFileChooser fc = new JFileChooser();
 
-            int ret = fc.showOpenDialog(VibeEditor.getInstance());
+            int ret = fc.showOpenDialog(LayerEditor.getInstance());
 
             if (ret == JFileChooser.APPROVE_OPTION)
                 loadFile(fc.getSelectedFile());
@@ -391,7 +391,7 @@ public class VibeEditor extends JFrame
      */
     private static void createAndShowGUI() {
         //Create and set up the window.
-        final VibeEditor frame = getInstance();
+        final LayerEditor frame = getInstance();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Display the window.
